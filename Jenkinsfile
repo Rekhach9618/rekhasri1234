@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        TF_VAR_example = 'value' // Set any necessary Terraform variables
-    }
+    
     stages {
         stage('Checkout') {
             steps {
