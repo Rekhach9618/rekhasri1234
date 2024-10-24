@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://your-repo-url.git' // Replace with your repo
+                git 'https://github.com/Rekhach9618/rekhasri1234.git' // Replace with your repo
             }
         }
         stage('Terraform Init') {
