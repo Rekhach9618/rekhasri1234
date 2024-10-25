@@ -1,47 +1,34 @@
 pipeline {
     agent any
-    
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Rekhach9618/rekhasri1234.git' // Replace with your repo
+                // Use bat for Windows
+                bat 'git clone https://github.com/Rekhach9618/rekhasri1234.git'
             }
         }
-pipeline {
-    agent { label 'your-agent-label' } // Ensure it runs on the correct agent
-    tools {
-        terraform 'Terraform-1.9.5' // Match the name in Global Tool Configuration
-    }
-    stages {
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                bat 'terraform init'
             }
         }
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan'
+                bat 'terraform plan'
             }
         }
         stage('Terraform Apply') {
             steps {
-                input 'Approve Terraform Apply?' // Manual approval step
-                sh 'terraform apply -auto-approve'
+                bat 'terraform apply -auto-approve'
             }
         }
     }
     post {
-        success {
-            echo 'Infrastructure provisioned successfully!'
+        always {
+            echo 'Infrastructure provisioning finished.'
         }
         failure {
             echo 'Infrastructure provisioning failed!'
         }
     }
 }
-
-    }
-}
-
-
-        
