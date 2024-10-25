@@ -1,12 +1,9 @@
 pipeline {
-    agent any
-    
+    agent { label 'your-agent-label' } // Ensure it runs on the correct agent
+    tools {
+        terraform 'Terraform-1.9.5' // Match the name in Global Tool Configuration
+    }
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Rekhach9618/rekhasri1234.git' // Replace with your repo
-            }
-        }
         stage('Terraform Init') {
             steps {
                 sh 'terraform init'
@@ -33,3 +30,9 @@ pipeline {
         }
     }
 }
+
+    }
+}
+
+
+        
