@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"  # Change this to your preferred AWS region
+}
+
 resource "aws_cloudwatch_metric_stream" "main" {
   name          = "my-metric-stream"
   role_arn      = aws_iam_role.metric_stream_to_firehose.arn
