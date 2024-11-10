@@ -37,11 +37,16 @@ resource "aws_iam_policy_attachment" "example_attachment" {
 
 # Add the user to the group
 resource "aws_iam_user_group_membership" "example_membership" {
-  user = aws_iam_user.example_user.name
+  user   = aws_iam_user.example_user.name
   groups = [aws_iam_group.example_group.name]
 }
 
+# Create an IAM access key for the user
+resource "aws_iam_access_key" "example_access_key" {
+  user = aws_iam_user.example_user.name
+}
+
+# Output the access key ID
 output "user_access_key" {
   value = aws_iam_access_key.example_access_key.id
 }
-
